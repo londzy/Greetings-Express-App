@@ -1,0 +1,17 @@
+body {
+
+  background-image: url("http://ak9.picdn.net/shutterstock/videos/14275469/thumb/2.jpg");
+ background-size: 100%;
+ background-repeat: no-repeat;
+ font-size: 200%;
+ line-height: 1.6;
+ padding: 25px 50px 75px;
+}
+
+.buttons {
+display: block;
+}
+
+.greeting {
+  text-transform: capitalize !important;
+}

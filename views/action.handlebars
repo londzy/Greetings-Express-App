@@ -1,0 +1,19 @@
+<div class="row">
+  <h1>Names greeted</h1>
+  <div class="row">
+  <table>
+      <tr>
+        <th>Greeted names</th>
+        <th>Greeted times</th>
+      </tr>
+    {{#each greetings}}
+        <tr>
+          <td><a href="/counter/{{greeted_names}}">{{greeted_names}}</a></td>
+          <td>{{spotted_greetings}}</td>
+         
+        </tr>
+        {{/each}}
+  </table>
+  </div>
+  <a href = "javascript:history.back()">Back to previous page</a>
+</div>

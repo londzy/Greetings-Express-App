@@ -1,0 +1,54 @@
+<div class="row">
+  <h1>GREETINGS</h1>
+</div>
+<p>
+  <div class="">
+    <form action="/greet" method="POST">
+      Name :
+      <input type="text" class="inputName" id="nameInput" name="name" placeholder="enter your name here" value="{{enterInput}}">
+
+      <p>
+        <div class="RadioBtn">
+          <input type="radio" name="language" class="language" value="English">English
+          <input type="radio" name="language" class="language" value="Chinese">Chinese
+          <input type="radio" name="language" class="language" value="Venda">Venda
+
+        </div>
+        <p>
+          <div class="counter" name="counterAll" value="count"><b>Counter:{{count}}</b></div>
+          <p>
+            <div class="row">
+              <div class="three columns">
+                <button class="greetMeBtn" id="greetMeBtn" type="submit" name="greeted" value="{{greet}}">GREET ME</button>
+                {{!-- <button class="resetBtn" id="resetBtn" type="submit" name="reset" value="{{reset}}">RESET</button>
+                --}}
+              </div>
+                
+    </form>
+ 
+    <form action="/resetBtn" method="post">
+                 <button class="resetBtn" id="Btn" type="submit" name="clear">Reset</button> 
+              </form>
+
+    
+
+    {{!-- <form action="/actions" method="POST"> --}}
+      <div class="row">
+        <p class="greeted_namesBtn"> <a href='/action'>GREETED NAMES</a> </p>
+      </div>
+      {{!-- </form> --}}
+<div class="row">
+         
+        {{#if messages.error}}
+         <b> <div class="entry">
+          <p> {{messages.error}}</p></b>
+        </div>
+        {{/if}}
+    <div class="three columns">
+      <div class="greeting" name="greetMsg" value="">{{greetName}}</div>
+    </div>
+  </div>
+ 
+    {{!-- <h6>Hello{{messages.error}}</h6>  --}}
+
+  </div>
