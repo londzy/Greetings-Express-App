@@ -141,9 +141,8 @@ app.post('/add', async function (req, res) {
     }
 });
 
-// app.get('/', async function (req, res, next) {
-//     res.redirect('greeted');
-// });
+
+
 
 app.post('/greeted', async function (req, res) {
     try {
