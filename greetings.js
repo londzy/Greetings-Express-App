@@ -39,17 +39,16 @@ module.exports = function Greetings (pool) {
         return count.rows[0].count;
     }
 
-    async function singleName (names){
-      let result = await pool.query('select * from greetz where greeted_names=$1',[names]) ;
+    async function singleName (name){
+      name = name.toLowerCase();  
+      let result = await pool.query('select * from greetz where greeted_names=$1',[name]) ;
+      
+      console.log('----------------');
+      console.log(result.rows);
       return result.rows[0];
       
     }
 
-    // function allGreets() {
-    // // name,
-    // // language,
-    // // greetedNames
-    // }
     async function resetBtn () {
         await pool.query('delete from greetz');
     }
@@ -60,9 +59,5 @@ module.exports = function Greetings (pool) {
         greetCounter,
         resetBtn,
         singleName
-    // allGreetings: greetingName,
-    // countAllGreets: greetSpottedCounter,
-    // countAllNames: greetCounter,
-    // allGreets
     };
 };
