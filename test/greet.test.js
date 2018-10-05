@@ -33,52 +33,56 @@ describe('The basic database web app', function () {
         assert.equal(greetz, 'Ndaa, mthobisi');
     });
 
-    it('should greet count 2 names greeted', async function() {
-     let greet = greetings(pool);
-      await greet.greetingName('English', 'Sibusiso');
-       await greet.greetingName('Venda', 'Tholinhlanhla');
+    it('should greet count 2 names greeted', async function () {
+        let greet = greetings(pool);
+        await greet.greetingName('English', 'Sibusiso');
+        await greet.greetingName('Venda', 'Tholinhlanhla');
         assert.equal(2, await greet.greetCounter());
-      });
+    });
 
-      it('should greet count 3 names greeted', async function() {
+    it('should greet count 3 names greeted', async function () {
         let greet = greetings(pool);
         await greet.greetingName('English', 'Sibusiso');
         await greet.greetingName('Venda', 'Tholinhlanhla');
         await greet.greetingName('Chinese', 'luthuli');
         assert.equal(3, await greet.greetCounter());
-         });
+    });
 
-        it('should count 1 times same name', async function() {
+    it('should count 1 times same name', async function () {
         let greet = greetings(pool);
         await greet.greetingName('English', 'Sibusiso');
         await greet.greetingName('Venda', 'Sibusiso');
         await greet.greetingName('Chinese', 'luthuli');
-            assert.equal(2, await greet.greetCounter());
-             });
-       
-       it('should return en error prompt massage to enter a name', async function () {
-    let greet = greetings(pool);
-    let greetz = await greet.greetingName('');
-        
-    assert.equal(greetz, 'Please enter name');
-            });
+        assert.equal(2, await greet.greetCounter());
+    });
+
+    it('should return en error prompt massage to enter a name', async function () {
+        let greet = greetings(pool);
+        let greetz = await greet.greetingName('');
+
+        assert.equal(greetz, 'Please enter name');
+    });
 
     it('should return return en error prompt massage to select a language', async function () {
-    let greet = greetings(pool);
-    let greetz = await greet.greetingName('');
-    assert.equal(greetz, 'Please enter name');
-         });
-    
-    it('should return all names on the database', async function () {
-    let greet = greetings(pool);
-    await greet.greetingName('English', 'Sibusiso');
-    await greet.greetingName('Venda', 'Sibusiso');
-    await greet.greetingName('Chinese', 'luthuli');
-    let results = await greet.all();
-    console.log(results);
-    //assert.equal(await greet.all());
+        let greet = greetings(pool);
+        let greetz = await greet.greetingName('');
+        assert.equal(greetz, 'Please enter name');
     });
-       
+
+    it('should return all names on the database', async function () {
+        let greet = greetings(pool);
+        await greet.greetingName('English', 'Sibusiso');
+        await greet.greetingName('Venda', 'Sibusiso');
+        await greet.greetingName('Chinese', 'luthuli');
+        let results = await greet.all();
+
+        assert.equal(results, 
+        [
+            { id: 11, greeted_names: 'sibusiso', spotted_greetings: 2 },
+            { id: 12, greeted_names: 'luthuli', spotted_greetings: 1 }
+        ]);
+    });
+
     after(function () {
         pool.end();
     });
