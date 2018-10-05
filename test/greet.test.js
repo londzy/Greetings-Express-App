@@ -3,7 +3,7 @@ const greetings = require('../greetings');
 const pg = require('pg');
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder123:pg123@localhost:5432/greetings';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/greetings';
 
 const pool = new Pool({
     connectionString
@@ -13,13 +13,10 @@ describe('The basic database web app', function () {
     beforeEach(async function () {
         await pool.query('delete from greetz');
     });
-
     it('should greet Ayanda in English', async function () {
         let greet = greetings(pool);
         let greetz = await greet.greetingName('English', 'ayanda');
-
         assert.equal(greetz, 'Hello, ayanda');
-        
     });
 
     it('should greet londiwe in Chinese', async function () {
@@ -66,14 +63,22 @@ describe('The basic database web app', function () {
     assert.equal(greetz, 'Please enter name');
             });
 
-            it('should return return en error prompt massage to select a language', async function () {
-                let greet = greetings(pool);
-                let greetz = await greet.greetingName('');
-                    
-                assert.equal(greetz, 'Please enter name');
-                        });
+    it('should return return en error prompt massage to select a language', async function () {
+    let greet = greetings(pool);
+    let greetz = await greet.greetingName('');
+    assert.equal(greetz, 'Please enter name');
+         });
+    
+    it('should return all names on the database', async function () {
+    let greet = greetings(pool);
+    await greet.greetingName('English', 'Sibusiso');
+    await greet.greetingName('Venda', 'Sibusiso');
+    await greet.greetingName('Chinese', 'luthuli');
+    let results = await greet.all();
+    console.log(results);
+    //assert.equal(await greet.all());
+    });
        
-
     after(function () {
         pool.end();
     });

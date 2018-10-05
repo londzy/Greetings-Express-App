@@ -101,8 +101,8 @@ app.post('/greet', async function (req, res, next) {
 
 app.get('/action', async function (req, res, next) {
     try {
-        let results = await pool.query('select * from greetz ');
-        let greetings = results.rows;
+        let greetings = await greetMe.all();
+
         res.render('action', { greetings });
     } catch (err) {
         console.error('Does want to get names from database', err);

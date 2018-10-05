@@ -1,4 +1,8 @@
 module.exports = function Greetings (pool) {
+
+    async function all(){let results = await pool.query('select * from greetz ');
+        return results.rows;}
+
     async function greetingName (language, name) {
         
         if(!language === undefined){
@@ -51,6 +55,7 @@ module.exports = function Greetings (pool) {
     }
 
     return {
+        all,
         greetingName,
         greetCounter,
         resetBtn,
