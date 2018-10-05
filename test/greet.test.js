@@ -76,11 +76,11 @@ describe('The basic database web app', function () {
         await greet.greetingName('Chinese', 'luthuli');
         let results = await greet.all();
 
-        assert.equal(results, 
+        assert.deepEqual(results, 
         [
             { id: 11, greeted_names: 'sibusiso', spotted_greetings: 2 },
             { id: 12, greeted_names: 'luthuli', spotted_greetings: 1 }
-        ]);
+            ]);
     });
 
     after(function () {
