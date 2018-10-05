@@ -129,33 +129,7 @@ app.post('/resetBtn', async function (req, res) {
     }
 });
 
-app.post('/add', async function (req, res) {
-    try {
-        const personName = req.body.greeted_names;
-        if (personName && personName !== '') {
-            await pool.query('insert into greetz (greeted_names, spotted_greetings) values ($1, $2)', [personName, 1]);
-            res.redirect('/');
-        }
-    } catch (err) {
-        res.send(err.stack);
-    }
-});
 
-
-
-
-app.post('/greeted', async function (req, res) {
-    try {
-        const personName = req.body.greeted_names;
-        if (personName && personName !== '') {
-            await pool.query('insert into greetz (greeted_names, spotted_greetings) values ($1, $2)', [personName, 1]);
-        }
-
-        res.render('action');
-    } catch (err) {
-        res.send(err.stack);
-    }
-});
 
 const PORT = process.env.PORT || 3688;
 app.listen(PORT, function () {
